@@ -2,24 +2,66 @@
 #include	<cstdlib>
 using namespace	std;
 
-int generateRandomNumber();
-int getPlayerGuess();
-void printAnswer(int number, int randomNumber);
-void playGuessIt();
+int generateRandomNumber();         //tao so ngau nhien
+int getPlayerGuess();               //lay so nguoi choi
+void printAnswer(int number, int randomNumber);         //in ket qua doan
+int difficultyLevel();              //lua chon do kho cho game
+void playGuessIt();                 //Bat dau tro choi
+void manyAttempt();                 //choi nhieu lan
 
 int main()
 {
     cout << " Chao mung den voi game Doan So" << endl
          << "May tinh chon 1 so ngau nhien tu 1-100, hay doan so do!" << endl
-         << "Moi lan choi ban co 10 diem, doan sai -1 diem, ket thuc khi doan dung hoac 0 diem" << endl << endl;
-    int traloi;
-    do {
+         << "Moi lan choi ban co so lan doan nhat dinh, tro choi ket thuc khi doan dung hoac het luot" << endl << endl;
+    manyAttempt();
+    return 0;
+}
+
+int difficultyLevel()
+{
+    int dokho;
+    cout << "Vui long lua chon do kho cho game: " << endl 
+        << "Easy :  bam 1" << endl 
+        << "Medium : bam 2" << endl
+        << "Hard :  bam 3 "<< endl
+        << "Do kho ban muon choi la: ";
+    cin >> dokho;
+    if(dokho == 1) 
+    {
+        cout << "Muc do Easy, ban co 10 luot doan!";
+        return 10;
+    }
+    else if(dokho == 2) 
+    {
+        cout << "Muc do Medium, ban co 7 luot doan";
+        return 7;
+    }
+    else  if(dokho == 3)
+    {
+        cout << "Muc do Hard, ban co 5 luot doan";
+        return 5;
+    }
+    else 
+    {
+        int traloi;
+        cout << "So ban chon khong hop le!" << endl << endl
+            << "Tiep tuc choi bam 1, ket thuc bam phim bat ki " << endl;
+        cin >> traloi;
+        if(traloi == 1) {return difficultyLevel();}
+        else exit(0);
+    }
+}
+
+void manyAttempt()
+{
     playGuessIt();
+    int traloi;
     cout << "Tiep tuc choi bam 1, ket thuc bam 0" << endl;
     cin >> traloi;
-    }
-    while(traloi != 0);
-    return 0;
+    if (traloi == 1) {manyAttempt();}
+    else if(traloi == 0) {cout << "Cam on ban da trai nghiem Doan So 1.4. Hen gap lai vao nhung tro choi khac! <3";}
+    else {cout << "So ban chon khong hop le! Tro choi se tu dong ket thuc " << endl;}
 }
 
 void playGuessIt()
@@ -27,20 +69,19 @@ void playGuessIt()
     int guessAttempt = 0;
     int randomNumber = generateRandomNumber();
     int number;
+    int maxAttempt = difficultyLevel();
 
     do {
         guessAttempt++;
         number = getPlayerGuess();
         printAnswer(number, randomNumber);
-        
     }
-    while(number != randomNumber and guessAttempt < 11);
-    if (guessAttempt == 11) 
+    while(number != randomNumber and guessAttempt < maxAttempt);
+    if (guessAttempt == maxAttempt) 
     {
-            cout << "Ban da het lan doan! Game Over?" << endl << endl;
+            cout << "Ban da het luot doan! Game Over?" << endl << endl;
     }
-    else cout  << "Ban doan dung sau " << guessAttempt << " lan." << endl
-         << "Diem cua ban la : " << 10 - guessAttempt << " diem." << endl << endl;
+    else cout  << "Ban doan dung sau " << guessAttempt << " lan." << endl << endl;
 }
 
 int generateRandomNumber()
@@ -59,7 +100,10 @@ int getPlayerGuess()
 
 void printAnswer(int number, int randomNumber)
 {
-    if(number > randomNumber){
+    if (number < 1 or number > 100){
+        cout << "So ban chon khong hop le, vui long chon so trong khoang 1-100" << endl;
+    }
+    else if(number > randomNumber){
         cout << "So ban chon to hon so can doan." << endl;
     }
     else if(number < randomNumber) {
