@@ -77,7 +77,7 @@ void playGuessIt()
         printAnswer(number, randomNumber);
     }
     while(number != randomNumber and guessAttempt < maxAttempt);
-    if (guessAttempt == maxAttempt) 
+    if (number != randomNumber) 
     {
             cout << "Ban da het luot doan! Game Over?" << endl << endl;
     }
