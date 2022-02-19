@@ -1,0 +1,82 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+void introduction();                            //gioi thieu tro choi
+char getHostReaction(int X);                    //kiem tra so cua nguoi choi
+int selectNumber(int low, int high);            //so may tinh doan
+void playComputerGuessIt();                     //choi May Doan So
+void conclusion(int X);                         //in ket luan
+
+int main()
+{
+    introduction();
+    playComputerGuessIt();
+    return 0;
+}
+
+void introduction()
+{
+    char traloi;
+    cout << "Chao mung den voi game May Doan So" << endl 
+        << "Hay nghi den 1 con so trong khoang 1-100, may tinh co nhiem vu doan ra so do" << endl
+        << "Moi lan may tinh hoi, hay tra loi theo quy uoc" << endl 
+        << "Bam I de xem quy uoc, neu da biet bam C de tiep tuc tro choi.  " ;
+    NhapTraLoi:
+    cin >> traloi;
+    if (traloi == 'I' or traloi == 'i') 
+    {
+        cout << "Quy Uoc" << endl << endl
+            << " > : So may tinh doan lon hon so cua ban." << endl
+            << " < : So may tinh doan nho hon so cua ban." << endl
+            << " = : May tinh doan dung so cua ban." << endl << endl;
+    }
+    else if (traloi == 'C' or traloi == 'c') 
+    { 
+        cout << " Loading...";
+        for(int i = 0; i < 100; i++)
+        {
+            cout << ".";
+        }
+        cout << endl << endl;
+    }
+    else {
+        cout << "Ban nhap sai cu phap, hay lua chon lai.   ";
+        goto NhapTraLoi;
+    }
+}
+
+void playComputerGuessIt()
+{
+    int X; char A;
+    int low = 1, high = 100;
+    do {
+        X = selectNumber(low, high);
+        A = getHostReaction(X);
+        if(A == '<') high = X - 1;
+        else if(A == '>') low = X + 1;
+    }
+    while (A != '=');
+   conclusion(low);
+}
+
+void conclusion(int X)
+{
+    cout << " Vay so can tim la : " << X << endl
+    << "Cam on vi da tham gia phien ban 1.0" << endl;
+}
+
+int selectNumber(int low, int high)
+{
+    return (low + high)/2;
+}
+
+char getHostReaction(int X)
+{
+    char A;
+    cout << "So may tinh doan la : " << X << endl
+        << "Vui long tra loi: ";
+    cin >> A;
+    return A;
+}
