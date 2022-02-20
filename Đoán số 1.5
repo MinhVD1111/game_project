@@ -29,18 +29,25 @@ int difficultyLevel()
     cin >> dokho;
     if(dokho == 1) 
     {
-        cout << "Muc do Easy, ban co 10 luot doan!";
-        return 10;
+        cout << "Muc do Easy, ban co 7 luot doan!";
+        return 7;
     }
     else if(dokho == 2) 
     {
-        cout << "Muc do Medium, ban co 7 luot doan";
-        return 7;
-    }
-    else  if(dokho == 3)
-    {
-        cout << "Muc do Hard, ban co 5 luot doan";
+        cout << "Muc do Medium, ban co 5 luot doan";
         return 5;
+    }
+    else if(dokho == 3)
+    {
+        cout << "Muc do Hard, ban co 3 luot doan";
+        return 3;
+    }
+    else if(dokho == 0)
+    {
+        cout << endl << endl << "       Achievement Unlock : Impossible Level"
+             << endl << endl << endl
+             << "Chuc mung ban mo khoa do kho Impossible, ban co 1 luot doan." << endl;
+        return 1;
     }
     else 
     {
@@ -79,7 +86,8 @@ void playGuessIt()
     while(number != randomNumber and guessAttempt < maxAttempt);
     if (number != randomNumber) 
     {
-            cout << "Ban da het luot doan! Game Over?" << endl << endl;
+         cout << "Ban da het luot doan! So can tim la : " << randomNumber << endl << endl
+              << endl << "...Game Over..." << endl << endl;
     }
     else cout  << "Ban doan dung sau " << guessAttempt << " lan." << endl << endl;
 }
