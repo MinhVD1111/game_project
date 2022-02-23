@@ -8,10 +8,11 @@ void printAnswer(int number, int randomNumber);         //in ket qua doan
 int difficultyLevel();              //lua chon do kho cho game
 void playGuessIt();                 //Bat dau tro choi
 void manyAttempt();                 //choi nhieu lan
+void achievementChecking(int chk);  //ham con check thanh tuu
 
 int main()
 {
-    cout << " Chao mung den voi game Doan So" << endl
+    cout << " Chao mung den voi game Doan So" << endl   
          << "May tinh chon 1 so ngau nhien tu 1-100, hay doan so do!" << endl
          << "Moi lan choi ban co so lan doan nhat dinh, tro choi ket thuc khi doan dung hoac het luot" << endl << endl;
     manyAttempt();
@@ -34,19 +35,17 @@ int difficultyLevel()
     }
     else if(dokho == 2) 
     {
-        cout << "Muc do Medium, ban co 5 luot doan";
+        cout << "Muc do Medium, ban co 5 luot doan.";
         return 5;
     }
     else if(dokho == 3)
     {
-        cout << "Muc do Hard, ban co 3 luot doan";
+        cout << "Muc do Hard, ban co 3 luot doan.";
         return 3;
     }
     else if(dokho == 0)
     {
-        cout << endl << endl << "       Achievement Unlock : Impossible Level"
-             << endl << endl << endl
-             << "Chuc mung ban mo khoa do kho Impossible, ban co 1 luot doan." << endl;
+        cout << endl << "Chuc mung ban mo khoa do kho Impossoble, ban co 1 luot doan." << endl;
         return 1;
     }
     else 
@@ -64,10 +63,10 @@ void manyAttempt()
 {
     playGuessIt();
     int traloi;
-    cout << "Tiep tuc choi bam 1, ket thuc bam 0" << endl;
+    cout << "Choi lai choi bam 1, ket thuc bam 0" << endl;
     cin >> traloi;
     if (traloi == 1) {manyAttempt();}
-    else if(traloi == 0) {cout << "Cam on ban da trai nghiem Doan So 1.4. Hen gap lai vao nhung tro choi khac! <3";}
+    else if(traloi == 0) {cout << "Cam on ban da trai nghiem Doan So 1.5. Hen gap lai vao nhung tro choi khac! <3";}
     else {cout << "So ban chon khong hop le! Tro choi se tu dong ket thuc " << endl;}
 }
 
