@@ -28,8 +28,8 @@ void introduction()
     if (traloi == 'I' or traloi == 'i') 
     {
         cout << "Quy Uoc" << endl << endl
-            << " > : So may tinh doan lon hon so cua ban." << endl
-            << " < : So may tinh doan nho hon so cua ban." << endl
+            << " < : So cua ban nho hon so may tinh doan." << endl
+            << " > : So cua ban lon hon so may tinh doan." << endl
             << " = : May tinh doan dung so cua ban." << endl << endl;
     }
     else if (traloi == 'C' or traloi == 'c') 
@@ -58,7 +58,7 @@ void playComputerGuessIt()
         else if(A == '>') low = X + 1;
     }
     while (A != '=');
-   conclusion(low);
+   conclusion(X);
 }
 
 void conclusion(int X)
