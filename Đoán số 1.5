@@ -6,17 +6,23 @@ int generateRandomNumber();         //tao so ngau nhien
 int getPlayerGuess();               //lay so nguoi choi
 void printAnswer(int number, int randomNumber);         //in ket qua doan
 int difficultyLevel();              //lua chon do kho cho game
+void welcomeToGuessIt();            //Gioi thieu tro choi
 void playGuessIt();                 //Bat dau tro choi
 void manyAttempt();                 //choi nhieu lan
 void achievementChecking(int chk);  //ham con check thanh tuu
 
 int main()
 {
+    welcomeToGuessIt();
+    manyAttempt();
+    return 0;
+}
+
+void welcomeToGuessIt()
+{
     cout << " Chao mung den voi game Doan So" << endl   
          << "May tinh chon 1 so ngau nhien tu 1-100, hay doan so do!" << endl
          << "Moi lan choi ban co so lan doan nhat dinh, tro choi ket thuc khi doan dung hoac het luot" << endl << endl;
-    manyAttempt();
-    return 0;
 }
 
 int difficultyLevel()
@@ -67,7 +73,7 @@ void manyAttempt()
     cin >> traloi;
     if (traloi == 1) {manyAttempt();}
     else if(traloi == 0) {cout << "Cam on ban da trai nghiem Doan So 1.5. Hen gap lai vao nhung tro choi khac! <3";}
-    else {cout << endl << "So ban chon khong hop le! Tro choi se tu dong ket thuc " << endl;}
+    else {cout << "So ban chon khong hop le! Tro choi se tu dong ket thuc " << endl;}
 }
 
 void playGuessIt()
@@ -85,10 +91,10 @@ void playGuessIt()
     while(number != randomNumber and guessAttempt < maxAttempt);
     if (number != randomNumber) 
     {
-         cout << endl << "Ban da het luot doan! So can tim la : " << randomNumber << endl << endl
+         cout << "Ban da het luot doan! So can tim la : " << randomNumber << endl << endl
               << endl << "...Game Over..." << endl << endl;
     }
-    else cout << endl << "Ban doan dung sau " << guessAttempt << " lan." << endl << endl;
+    else cout  << "Ban doan dung sau " << guessAttempt << " lan." << endl << endl;
 }
 
 int generateRandomNumber()
@@ -111,10 +117,10 @@ void printAnswer(int number, int randomNumber)
         cout << "So ban chon khong hop le, vui long chon so trong khoang 1-100" << endl << endl;
     }
     else if(number > randomNumber){
-        cout << "So ban chon to hon so can doan." << endl;
+        cout << "So ban chon to hon so can doan." << endl << endl;
     }
     else if(number < randomNumber) {
-        cout << "So ban chon be hon so can doan." << endl;
+        cout << "So ban chon be hon so can doan." << endl << endl;
     }
-    else cout << "Chuc mung! Ban da doan dung." << endl;
+    else cout << "Chuc mung! Ban da doan dung." << endl << endl;
 }
