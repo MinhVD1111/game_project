@@ -108,13 +108,13 @@ int getPlayerGuess()
 void printAnswer(int number, int randomNumber)
 {
     if (number < 1 or number > 100){
-        cout << "So ban chon khong hop le, vui long chon so trong khoang 1-100" << endl;
+        cout << "So ban chon khong hop le, vui long chon so trong khoang 1-100" << endl << endl;
     }
     else if(number > randomNumber){
-        cout << "So ban chon to hon so can doan." << endl;
+        cout << "So ban chon to hon so can doan." << endl << endl;
     }
     else if(number < randomNumber) {
-        cout << "So ban chon be hon so can doan." << endl;
+        cout << "So ban chon be hon so can doan." << endl << endl;
     }
-    else cout << "Chuc mung! Ban da doan dung." << endl;
+    else cout << "Chuc mung! Ban da doan dung." << endl << endl;
 }
