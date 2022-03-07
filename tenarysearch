@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+   int n; cin >> n;
+   int a[n+1];
+   for(int i = 1; i <= n; ++i)
+   {
+       cin >> a[i];
+   }
+   int x; cin >> x;
+
+    int L = 1, R = n;
+    while(R-L > 1)
+    {
+        int n = R - L + 1;
+        int u = n/3 + L, v = 2*n/3 + L;
+        if(x > a[v]) L = v;
+        else if(x < a[u]) R = u;
+        else if(x < a[v] and x > a[u]) {L = u; R = v;}
+        else {
+            if(x == a[v]) {cout << v; break;}
+            else {cout << u; break;}
+        }
+    }
+    
+}
