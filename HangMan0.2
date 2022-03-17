@@ -1,0 +1,79 @@
+#include <iostream>
+
+using namespace std;
+
+const string WORD_LIST[] = {"dog", "cat", "human"};
+const int WORD_COUNT = sizeof(WORD_LIST) / sizeof(string);
+
+void playHangMan();                 //choi tro choi
+string chooseWord();                //tu can doan
+void renderGame(string guessedWord, int badGuess);              //ve hinh
+char readAGuess();              // ky tu doan
+bool contains(string word, char guess);                 //kiem tra tu
+string update(string guessedWord, string word, char guess);                 // cap nhap tu
+
+int main()
+{
+    playHangMan();
+}
+
+void playHangMan()
+{
+    const int Max_Bad_Guesses = 7;
+    string word = chooseWord();
+    string guessedWord = string(word.size(), '-');
+    int badGuessCount = 0;
+    cout << badGuessCount << endl;
+    do {
+        renderGame(guessedWord, badGuessCount);
+        char guess = readAGuess();
+        if(contains(word, guess))
+        {guessedWord = update(guessedWord, word, guess);}
+        else badGuessCount++;
+    }
+    while (badGuessCount < Max_Bad_Guesses && word != guessedWord);
+    renderGame(guessedWord, badGuessCount);
+    if(badGuessCount < Max_Bad_Guesses) cout << "Chuc mung ban da doan dung!" << endl;
+    else cout << "Ban da het luot doan! Tu can doan la : " << word << endl; 
+}
+
+
+string chooseWord()
+{ 
+    srand(time(NULL));
+    int randomIndex = rand() % WORD_COUNT;
+    return WORD_LIST[randomIndex];
+   
+}
+
+void renderGame(string guessedWord, int badGuessCount)
+{
+    cout << guessedWord << endl;
+    cout << "So lan doan sai: " << badGuessCount << endl;
+}
+
+char readAGuess()
+{
+    char s;
+    cout << "Chu cai ban doan: ";
+    cin >> s;
+    return s;
+}
+
+bool contains(string word, char guess)
+{
+    for(int i = 0; i < word.size(); i++)
+    {
+        if(word[i] == guess) return true;
+    }
+    return false;
+}
+
+string update(string guessedWord, string word, char guess)
+{
+    for(int i = 0; i < word.size(); i++)
+    {
+        if(word[i] == guess) guessedWord[i] = guess;
+    }
+    return guessedWord;
+}
